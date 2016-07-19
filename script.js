@@ -68,6 +68,14 @@ module.exports = new Script({
 
     start: {
         receive: (bot) => {
+          console.log('BEFORE0');
+          console.log(bot.getProp('reason'));
+          bot.setProp('reason', 'TEST1');
+          console.log('AFTER1');
+          console.log(bot.getProp('reason'));
+          bot.setProp('reason', 'TEST2');
+          console.log('AFTER2');
+          console.log(bot.getProp('reason'));
             var prom = new Promise(function(resolve, reject){
                 setTimeout(function(){
                     bot.say("Hi! And Chill here (www.andchill.io). I'll give you spot-on movie recs you'll love. You can tell me anything about your movie preferences. I'll understand you :)\n\nI'm new and improved, so whether you've used me before or are brand new, say 'GO' to start! **During beta, you'll get your movie recs within a few minutes!**");
@@ -110,14 +118,7 @@ module.exports = new Script({
     },
     webhook : {
         receive: (bot, message) => {
-            console.log('BEFORE0');
-            console.log(bot.getProp('reason'));
-            bot.setProp('reason', 'TEST1');
-            console.log('AFTER1');
-            console.log(bot.getProp('reason'));
-            bot.setProp('reason', 'TEST2');
-            console.log('AFTER2');
-            console.log(bot.getProp('reason'));
+
 
             var p = new Promise(function(resolve, reject){
 
