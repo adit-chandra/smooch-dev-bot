@@ -18,6 +18,9 @@ const front = require(path.join(__dirname, "libs", "front"));
 
 var app_token = "0kntojv4o8o48nq92p1w9g3by";
 
+//user query params
+var title, reason, genre, recs, num;
+
 function stringTemplateGenerator(picks) {
 
     var ret_str = [];
@@ -109,8 +112,6 @@ module.exports = new Script({
         receive: (bot, message) => {
             var p = new Promise(function(resolve, reject){
 
-
-                var title, reason, genre, recs, num;
                 var id = ((bot.userId == "testUserId") ? "c2d45bd00a85a52593f645e6" : bot.userId);
                 //Getting the bot state variables
                 var prom = new Promise(function(resolve, reject){
@@ -121,7 +122,7 @@ module.exports = new Script({
                             bot.getProp('genre').then((gen) => {
                                 genre = gen;
                                 bot.getProp('recs').then((rec) => {
-                                    recs = ((rec != undefined) ? JSON.parse(rec) : undefined);
+                                    recs = ((rec !== undefined) ? JSON.parse(rec) : undefined);
                                     bot.getProp('num').then((n) => {
                                         num = n;
                                         resolve();
@@ -242,12 +243,12 @@ module.exports = new Script({
                                         recs = stringTemplateGenerator(movieProvider.returnPicks(title));
                                         bot.setProp('recs', JSON.stringify(recs));
                                         console.log("recs are here");
-                                        title = undefined;
-                                        genre = undefined;
-                                        reason = undefined;
-                                        bot.setProp('title', undefined).then(() =>{
-                                            bot.setProp('reason', undefined).then(() => {
-                                                bot.setProp('genre', undefined);
+                                        title = null;
+                                        genre = null;
+                                        reason = null;
+                                        bot.setProp('title', null).then(() =>{
+                                            bot.setProp('reason', null).then(() => {
+                                                bot.setProp('genre', null);
                                             });
                                         });
                                             console.log("line 249");
