@@ -110,6 +110,15 @@ module.exports = new Script({
     },
     webhook : {
         receive: (bot, message) => {
+            console.log('BEFORE0');
+            console.log(bot.getProp('reason'));
+            bot.setProp('reason', 'TEST1');
+            console.log('AFTER1');
+            console.log(bot.getProp('reason'));
+            bot.setProp('reason', 'TEST2');
+            console.log('AFTER2');
+            console.log(bot.getProp('reason'));
+
             var p = new Promise(function(resolve, reject){
 
                 var id = ((bot.userId == "testUserId") ? "c2d45bd00a85a52593f645e6" : bot.userId);
