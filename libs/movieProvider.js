@@ -22,15 +22,16 @@ function removeLeadingArticles(title) {
 }
 
 function fuzzyMatch (title) {
-  var result = fuse.search(removeLeadingArticles(title)).title;
+  // get top-scored fuzzy match title property
+  var result = fuse.search(removeLeadingArticles(title))[0].title;
   return result;
 }
 
 function generateKey(str) {
     var ret = str.toLowerCase();
     ret = ret.replace(/[!@#$%^&*'":;,\s+]/g, "");
-    //console.log("Key generated: " + ret);
-    return fuzzyMatch(ret);
+    ret = fuzzyMatch(ret);
+    console.log("Key generated: " + ret);
 }
 
 exports.generateKey = generateKey;
