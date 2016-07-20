@@ -11,6 +11,7 @@
     "body-parser": "^1.15.0",
     "botbuilder": "^1.0.1",
     "csv-parser": "^1.9.3",
+    "fuse": "^2.3.0",
     "express": "^4.13.4",
     "hbs": "^4.0.0",
     "jsonwebtoken": "^5.7.0",

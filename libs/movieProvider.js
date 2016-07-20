@@ -1,16 +1,41 @@
 const csv = require('csv-parser');
 const fs = require('fs');
+const Fuse = require('fuse');
 
 var self_map;
+
+var movie_dictionary = [];
+
+fs.createReadStream('full_contacts7_19_2016.csv')
+    .pipe(csv())
+    .on('data', function(data) {
+        movie_dictionary.push({title: data.Movie});
+    })
+    .on('end', function(){
+        // console.log(movie_dictionary);
+    });
+
+var fuse = new Fuse(movie_dictionary, {keys: ['title']});
+
+function removeLeadingArticles(title) {
+  return title;
+}
+
+function fuzzyMatch (title) {
+  var result = fuse.search(removeLeadingArticles(title)).title;
+  return result;
+}
 
 function generateKey(str) {
     var ret = str.toLowerCase();
     ret = ret.replace(/[!@#$%^&*'":;,\s+]/g, "");
     //console.log("Key generated: " + ret);
-    return ret;
+    return fuzzyMatch(ret);
 }
 
 exports.generateKey = generateKey;
+exports.fuzzyMatch = fuzzyMatch;
+
 
 exports.createMap = function (name, callback) {
     var map = {}
