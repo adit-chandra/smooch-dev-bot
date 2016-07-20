@@ -1,6 +1,6 @@
 const csv = require('csv-parser');
 const fs = require('fs');
-const Fuse = require('fuse');
+const Fuse = require('fuse.js');
 
 var self_map;
 
