@@ -6,7 +6,7 @@ var self_map;
 
 var movie_dictionary = [];
 
-fs.createReadStream('full_contacts7_19_2016.csv')
+fs.createReadStream('moviemap.csv')
     .pipe(csv())
     .on('data', function(data) {
         movie_dictionary.push({title: data.Movie});
