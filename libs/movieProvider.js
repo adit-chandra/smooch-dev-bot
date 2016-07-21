@@ -9,10 +9,11 @@ var movie_dictionary = [];
 fs.createReadStream('moviemap.csv')
     .pipe(csv())
     .on('data', function(data) {
-        movie_dictionary.push({title: data.Movie});
+        var movie_entry = {'title': data.Movie};
+        movie_dictionary.push(movie_entry);
     })
     .on('end', function(){
-        // console.log(movie_dictionary);
+        console.log(movie_dictionary);
     });
 
 var fuse = new Fuse(movie_dictionary, {keys: ['title']});
