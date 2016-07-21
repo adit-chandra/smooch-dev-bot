@@ -13,7 +13,7 @@ fs.createReadStream('moviemap.csv')
         // console.log('adding: ' + data.Movie);
     })
     .on('end', function(){
-        // console.log(movie_dictionary);
+        console.log(movie_dictionary[2]);
     });
 
 var fuse = new Fuse(movie_dictionary);
@@ -25,7 +25,7 @@ function removeLeadingArticles(title) {
 function fuzzyMatch (title) {
   // get top-scored fuzzy match title property
   var matches = fuse.search(removeLeadingArticles(title));
-  console.log(matches);
+  // console.log(matches);
   return matches[0];
 }
 
