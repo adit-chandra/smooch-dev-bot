@@ -10,10 +10,10 @@ fs.createReadStream('moviemap.csv')
     .pipe(csv())
     .on('data', function(data) {
         movie_dictionary.push(data.Movie);
-        console.log('adding: ' + data.Movie);
+        // console.log('adding: ' + data.Movie);
     })
     .on('end', function(){
-        console.log(movie_dictionary);
+        // console.log(movie_dictionary);
     });
 
 var fuse = new Fuse(movie_dictionary);
