@@ -25,7 +25,7 @@ function removeLeadingArticles(title) {
 function fuzzyMatch (title) {
   // get top-scored fuzzy match title property
   var matches = fuse.search(removeLeadingArticles(title));
-  console.log(matches[0]);
+  console.log(matches);
   return matches[0];
 }
 
