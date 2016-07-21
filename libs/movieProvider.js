@@ -9,14 +9,13 @@ var movie_dictionary = [];
 fs.createReadStream('moviemap.csv')
     .pipe(csv())
     .on('data', function(data) {
-        var movie_entry = {'title': data.Movie};
-        movie_dictionary.push(movie_entry);
+        movie_dictionary.push(data.Movie);
     })
     .on('end', function(){
         console.log(movie_dictionary);
     });
 
-var fuse = new Fuse(movie_dictionary, {keys: ['title']});
+var fuse = new Fuse(movie_dictionary);
 
 function removeLeadingArticles(title) {
   return title;
@@ -25,7 +24,7 @@ function removeLeadingArticles(title) {
 function fuzzyMatch (title) {
   // get top-scored fuzzy match title property
   var matches = fuse.search(removeLeadingArticles(title));
-  return matches[0].title;
+  return matches[0];
 }
 
 function generateKey(str) {
