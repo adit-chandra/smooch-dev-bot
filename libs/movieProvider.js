@@ -16,7 +16,7 @@ fs.createReadStream('moviemap.csv')
         console.log(movie_dictionary[2]);
     });
 
-var fuse = new Fuse(movie_dictionary);
+var fuse = new Fuse(movie_dictionary, {include: ['matches'], verbose: true});
 
 function removeLeadingArticles(title) {
   return title;
