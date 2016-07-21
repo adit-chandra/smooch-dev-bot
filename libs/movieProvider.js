@@ -33,6 +33,7 @@ function generateKey(str) {
     var ret = str.toLowerCase();
     ret = ret.replace(/[!@#$%^&*'":;,\s+]/g, "");
     ret = fuzzyMatch(ret);
+    return ret;
     // console.log("Key generated: " + ret);
 }
 
